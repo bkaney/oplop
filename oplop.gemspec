@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "oplop"
 
+  s.add_dependency(%q<highline>, ["~> 1.6.1"])
   s.add_development_dependency(%q<ruby-debug19>) 
   s.add_development_dependency(%q<rspec>, ["~> 2.6.0"]) 
   s.add_development_dependency(%q<yajl-ruby>, ["~> 0.8.2"])
