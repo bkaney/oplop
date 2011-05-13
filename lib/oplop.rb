@@ -17,7 +17,11 @@ module Oplop
     
     raise ArgumentError.new "Unknown keys #{args.keys.join(",")}." if args.keys.any?
     
-    password = urlsafe_b64encode(master_label).encode('UTF-8')
+    password = urlsafe_b64encode(master_label)
+    
+    if password.respond_to?(:encode)
+      password = password.encode('UTF-8')
+    end
     
     if m = password.match(/\d+/)
       password = "%s%s" % [ m[0], password ] if (m.begin(0) >= LENGTH)
