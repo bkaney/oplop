@@ -1,32 +1,35 @@
 module Oplop
   module Cli
-    
+   
+    def self.banner
+      "Usage: oplop [OPTIONS] [label]"
+    end
+
     def self.help
       help = <<-HELP
-Usage: oplap [OPTION] [label]
+This is a simple cli program to generate oplop passwords.
 
-Simple cli program to generate oplap passwords.
+You will be prompted for your master password.  
 
-You will be prompted for your master password.  If you are 
-on a Mac (or have pbcopy installed), or if you have xclip 
-installed, the password will be copied to your clipboard.
+The default behavior is to copy the password to your clipboard, and
+not display it.  This works if you are on a Mac (and/or have pbcopy 
+installed), or if you have xclip (installed for Linux).
 
-Options:
+If you do not have pbcopy or xclip, you will have to run the program
+in verbose mode (--verbose).
 
-  --help        : This help message
-  --new         : Runs in new mode, double prompts for
-                  master password.
-  
-Examples:
+Here are some examples:
 
-Get my github password:
+Copy my github password to clipboard:
+  oplop github
 
-  oplap github
+Print my gmail password to STDOUT.
+  oplop --verbose gmail
 
-Generate a new password for amazon:
+Copy a new password for amazon (prompts for master twice):
+  oplop --new amazon
 
-  oplap --new amazon
-
+Feedback, patches and bugs: https://github.com/bkaney/oplop
 HELP
     end
 

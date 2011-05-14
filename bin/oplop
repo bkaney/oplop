@@ -1,48 +1,65 @@
 #!/usr/bin/env ruby
 oplop_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(oplop_dir) unless $LOAD_PATH.include?(oplop_dir)
+
 require 'oplop'
 require 'oplop/cli'
 require 'highline/import'
+require 'optparse'
 
+# -- options
+options = {}
+optparse = OptionParser.new do |opts|
+  opts.banner = Oplop::Cli.banner
 
-if ARGV.first =~ /\-help|\?/ or ARGV.empty?
-  puts Oplop::Cli.help
-  exit 0
-end
+  options[:verbose] = false
+  opts.on( '-v', '--verbose', 'Output the password to STDOUT' ) do
+    options[:verbose] = true
+  end
 
-new_or_label = ARGV.shift
-mode = :query
+  options[:new] = false
+  opts.on( '-n', '--new', 'New mode (2 prompt for master)') do
+    options[:new] = true
+  end
 
-label = if new_or_label =~ /\-new/
-          mode = :new
-          ARGV.shift || ""
-        else
-          new_or_label
-        end
+  opts.on( '-h', '--help', 'Display this screen' ) do
+    puts opts
+    puts "\n"
+    puts Oplop::Cli.help
+    exit
+  end
+
+end.parse!
+
+# -- program
+label = ARGV.shift
 
 if label.empty?
   puts "!! You need to pass in a label!"
   exit 2
 end
 
-
-case mode
-when :query
-  master = ask("Enter your master password: ") { |q| q.echo = "*" }
-when :new
+if options[:new]
   master = ask("Enter your master password: ") { |q| q.echo = "*" }
   master_confirm = ask("Enter your master password (again): ") { |q| q.echo = "*" }
   if (master != master_confirm)
     puts "!! Your master and confirm don't match!"
     exit 2
   end
+else
+  master = ask("Enter your master password: ") { |q| q.echo = "*" }
 end
 
 password = Oplop.password(:label => label, :master => master)
 
-puts "\n    Password for #{label}:\t#{password}\n\n"
+if options[:verbose]
+  puts "\n    Password for #{label}:\t#{password}\n\n"
+end
 
 if Oplop::Cli.copy_to_clipboard(password)
-  print "This has been copied to your clipboard.\n"
+  print "Your #{label} password has been copied to your clipboard.  \n"
+else
+  print "!! Could not copy to clipboard, try installing xclip. "
+  print "Run with --verbose flag to see password on STDOUT." unless options[:verbose]
+  print "\n"
 end
