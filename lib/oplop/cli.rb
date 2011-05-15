@@ -36,15 +36,14 @@ HELP
     end
 
     def self.copy_to_clipboard(string)
-      copy_program = `which pbcopy`
-      copy_program ||= `which xclip`
-
+      copy_program = `which pbcopy`.strip
+      copy_program = `which xclip`.strip if copy_program.empty?
       clipboard(copy_program, string) unless copy_program.empty?
     end
 
     def self.clipboard(copy_program, string)
       Open3.popen3(copy_program) do |stdin, stdout, stderr, wait_thr|
-        stdin.puts string
+        stdin.print string
         stdin.close
         wait_thr.status
       end
