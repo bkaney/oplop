@@ -1,3 +1,5 @@
+require 'open3'
+
 module Oplop
   module Cli
    
@@ -34,10 +36,17 @@ HELP
     end
 
     def self.copy_to_clipboard(string)
-      if (copy_program = `which pbcopy`) && !copy_program.empty?
-        system("echo -n #{string} | #{copy_program}")
-      elsif (copy_program = `which xclip`) && !copy_program.empty?
-        system("echo -n #{string} | #{copy_program}")
+      copy_program = `which pbcopy`
+      copy_program ||= `which xclip`
+
+      clipboard(copy_program, string) unless copy_program.empty?
+    end
+
+    def self.clipboard(copy_program, string)
+      Open3.popen3(copy_program) do |stdin, stdout, stderr, wait_thr|
+        stdin.puts string
+        stdin.close
+        wait_thr.status
       end
     end
     
