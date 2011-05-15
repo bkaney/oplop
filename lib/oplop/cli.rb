@@ -35,9 +35,9 @@ HELP
 
     def self.copy_to_clipboard(string)
       if (copy_program = `which pbcopy`) && !copy_program.empty?
-        system("echo #{string} | #{copy_program}")
+        system("echo -n #{string} | #{copy_program}")
       elsif (copy_program = `which xclip`) && !copy_program.empty?
-        system("echo #{string} | #{copy_program}")
+        system("echo -n #{string} | #{copy_program}")
       end
     end
     
