@@ -45,7 +45,12 @@ HELP
       Open3.popen3(copy_program) do |stdin, stdout, stderr, wait_thr|
         stdin.print string
         stdin.close
-        wait_thr.status
+        # ruby 1.9 has wait_thr, 1.8 doesn't
+        if wait_thr.nil?
+          !! stderr.read.strip
+        else
+          wait_thr.status
+        end
       end
     end
     
