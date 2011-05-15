@@ -34,7 +34,7 @@ end.parse!
 # -- program
 label = ARGV.shift
 
-if label.empty?
+if label.nil? or label.empty?
   puts "!! You need to pass in a label!"
   exit 2
 end
