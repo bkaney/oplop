@@ -39,7 +39,7 @@ if label.nil? or label.empty?
   exit 2
 end
 
-old_handler = Signal.trap("SIGINT") { exit 2 }
+Signal.trap("SIGINT") { exit 2 }
 master = ask("Enter your master password: ") { |q| q.echo = "*" }
 if options[:new]
   master_confirm = ask("Enter your master password (again): ") { |q| q.echo = "*" }
@@ -48,7 +48,6 @@ if options[:new]
     exit 2
   end
 end
-Signal.trap("SIGINT", old_handler)
 
 password = Oplop.password(:label => label, :master => master)
 
