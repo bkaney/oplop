@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/bkaney/oplop"
   s.summary     = %q{Oplop for Ruby}
   s.description = %q{Provides a ruby library and command line tool for Oplop}
+  s.license     = 'MIT'
 
   s.rubyforge_project = "oplop"
 

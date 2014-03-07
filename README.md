@@ -17,3 +17,8 @@ CLI
 ===
 
 This includes an `oplop` program.  Run `oplop --help` for more information.
+
+License
+=======
+
+MIT
