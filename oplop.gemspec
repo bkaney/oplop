@@ -15,11 +15,11 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "oplop"
 
-  s.add_dependency  'highline', '~> 1.6.20'
+  s.add_dependency  'highline', '~> 1.6'
 
-  s.add_development_dependency 'rake', '~> 10.1.1'
-  s.add_development_dependency 'rspec', '~> 2.14.1'
-  s.add_development_dependency 'yajl-ruby', '~> 1.2.0'
+  s.add_development_dependency 'rake', '~> 10.1'
+  s.add_development_dependency 'rspec', '~> 2.14'
+  s.add_development_dependency 'yajl-ruby', '~> 1.2'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
