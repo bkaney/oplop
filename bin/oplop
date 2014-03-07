@@ -42,15 +42,15 @@ if label.nil? or label.empty?
   exit 2
 end
 
+
+master = ask("Enter your master password: ") { |q| q.echo = "*" }
+
 if options[:new]
-  master = ask("Enter your master password: ") { |q| q.echo = "*" }
   master_confirm = ask("Enter your master password (again): ") { |q| q.echo = "*" }
   if (master != master_confirm)
     puts "!! Your master and confirm don't match!"
     exit 2
   end
-else
-  master = ask("Enter your master password: ") { |q| q.echo = "*" }
 end
 
 password = Oplop.password(:label => label, :master => master)
