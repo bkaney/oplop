@@ -14,11 +14,12 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "oplop"
 
-  s.add_dependency(%q<highline>, ["~> 1.6.1"])
-  s.add_development_dependency(%q<ruby-debug19>) 
-  s.add_development_dependency(%q<rspec>, ["~> 2.6.0"]) 
-  s.add_development_dependency(%q<yajl-ruby>, ["~> 0.8.2"])
-  
+  s.add_dependency  'highline', '~> 1.6.20'
+
+  s.add_development_dependency 'rake', '~> 10.1.1'
+  s.add_development_dependency 'rspec', '~> 2.14.1'
+  s.add_development_dependency 'yajl-ruby', '~> 1.2.0'
+
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
