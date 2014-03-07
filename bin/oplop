@@ -7,6 +7,9 @@ require 'oplop/cli'
 require 'highline/import'
 require 'optparse'
 
+# -- exit nicely if control-c
+Signal.trap("SIGINT") { exit 2 }
+
 # -- options
 options = {}
 optparse = OptionParser.new do |opts|
