@@ -6,12 +6,16 @@ This is a ruby implementation of Oplop http://code.google.com/p/oplop/
 Install
 =======
 
-    gem install oplop
+```
+gem install oplop
+```
 
 Usage
 =====
 
-    Oplop.password(:master => "master-password", :label => "nickname")
+```ruby
+Oplop.password(:master => "master-password", :label => "nickname")
+```
 
 CLI
 ===
