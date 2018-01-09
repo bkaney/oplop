@@ -53,7 +53,7 @@ if options[:new]
   end
 end
 
-password = Oplop.password(:label => label, :master => master, :length => Oplop::LEGACY_LENGTH)
+password = Oplop.password(:label => label, :master => master)
 
 if options[:verbose]
   puts "\n    Password for #{label}:\t#{password}\n\n"

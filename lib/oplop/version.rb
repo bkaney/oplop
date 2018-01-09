@@ -1,3 +1,3 @@
-module Oplop
-  VERSION = "0.0.8"
+class Oplop
+  VERSION = "2.0.0"
 end
