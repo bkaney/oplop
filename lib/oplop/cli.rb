@@ -1,6 +1,6 @@
 require 'open3'
 
-class Oplop
+module Oplop
   module Cli
 
     def self.banner
