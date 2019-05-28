@@ -19,21 +19,21 @@ prefix for specifying length.
 These will all produce the same password with the new default 16 character length:
 
 ```ruby
-Oplop.password(:master => "master-password", :label => "nickname")
-Oplop.password(:master => "master-password", :label => "16*nickname")
-Oplop.password(:master => "master-password", :label => "nickname", :length => 16)
+Oplop::V1.password(:master => "master-password", :label => "nickname")
+Oplop::V1.password(:master => "master-password", :label => "16*nickname")
+Oplop::V1.password(:master => "master-password", :label => "nickname", :length => 16)
 ```
 
 These will all produce the same password with the legacy 8 character length:
 ```
-Oplop.password(:master => "master-password", :label => "*nickname")
-Oplop.password(:master => "master-password", :label => "8*nickname")
-Oplop.password(:master => "master-password", :label => "nickname", :length => 8)
+Oplop::V1.password(:master => "master-password", :label => "*nickname")
+Oplop::V1.password(:master => "master-password", :label => "8*nickname")
+Oplop::V1.password(:master => "master-password", :label => "nickname", :length => 8)
 ```
 
 This is a 20-character password
 ```
-Oplop.password(:master => "master-password", :label => "20*nickname")
+Oplop::V1.password(:master => "master-password", :label => "20*nickname")
 ```
 
 CLI
